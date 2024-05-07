@@ -21,11 +21,25 @@ public class CardValidationImpl implements CardValidation{
     	System.out.println("The number is " + cardNumber);
         BigInteger number = new BigInteger(cardNumber);
         int digitSum = 0;
+        int counter = 0;
         while (number.compareTo(BigInteger.ZERO) == 1)
         {
         	int digit = number.mod(TEN).intValue();
-        	digitSum = digitSum+doubleDigit(digit);
-        	number = number.divide(TEN);
+        	if (counter == 0)
+        	{
+            	digitSum = digitSum+doubleDigit(digit);
+            	number = number.divide(TEN);
+            	counter = 1;
+            	System.out.println("Sum is: " + digitSum);
+        	}
+        	else if (counter == 1)
+        	{
+        		digitSum = digitSum+digit;
+            	number = number.divide(TEN);
+            	System.out.println("Sum is: " + digitSum);
+            	counter = 0;
+        	}
+
         }
         
         System.out.println("The digit sum is " + digitSum);

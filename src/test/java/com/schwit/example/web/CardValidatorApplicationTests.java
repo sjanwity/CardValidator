@@ -32,5 +32,18 @@ class CardValidatorApplicationTests {
 		Assertions.assertFalse(cardValidate.isValid("15"));
 	}
 	
+	
+	@Test
+	void longCardNumberTest() {
+		String input = "1";
+		Assertions.assertFalse(cardValidate.isValid(input.repeat(16)));
+	}
+	
+	@Test
+	void longCardNumberTest2() {
+		String input = "4242424242426742";
+		//Should be true according to sainsbury's
+		Assertions.assertTrue(!cardValidate.isValid(input));
+	}
 
 }
